@@ -49,4 +49,9 @@ defmodule AppWeb.AuthController do
     |> put_flash(:info, "Logged out successfully")
     |> redirect(to: ~p"/")
   end
+
+  #lets admin soft deactivate users accounts
+  def deactivate(conn, %{user_id}) do
+
+  end
 end

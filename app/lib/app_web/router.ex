@@ -20,12 +20,21 @@ defmodule AppWeb.Router do
     get "/", PageController, :home
 
     # Auth routes
-    get "/auth/new", AuthController, :new
+
     get "/auth/login", AuthController, :new
     post "/auth/login", AuthController, :login
     get "/auth/register", AuthController, :register
     post "/auth/register", AuthController, :create
     delete "/auth/logout", AuthController, :logout
+  end
+
+  scope "/api", AppWeb do
+    pipe_through :browser
+
+    get "/games/new", GameController, :new_game
+    post "/games", GameController, :create
+
+    # API routes can be added here
   end
 
   # Other scopes may use custom stacks.
