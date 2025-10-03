@@ -24,6 +24,14 @@ defmodule App.Application do
     Supervisor.start_link(children, opts)
   end
 
+  # Add the BetSettlementQueue to the list of supervised children
+  children = [
+  App.Repo,
+  AppWeb.Endpoint,
+  App.BetSettlementQueue,
+  # ...
+]
+
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   @impl true
