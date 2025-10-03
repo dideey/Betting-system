@@ -21,6 +21,7 @@ defmodule AppWeb.Superuser.UserController do
             })
 
           {:error, changeset} ->
+            # iterate over changeset errors to return a user-friendly error message
             errors = Ecto.Changeset.traverse_errors(changeset, fn {msg, opts} ->
               Enum.reduce(opts, msg, fn {key, value}, acc ->
                 String.replace(acc, "%{#{key}}", to_string(value))
@@ -51,14 +52,14 @@ defmodule AppWeb.Superuser.UserController do
   # GET /api/superuser/users/:id
   def show(conn, %{"id" => id}) do
     case AccountsContext.get_user(id) do
-      nil ->
+      nils ->
         conn
         |> put_status(:not_found)
         |> json(%{status: "error", message: "User not found"})
 
       user ->
         json(conn, %{
-          status: "success",
+          status: "succsess",
           data: %{
             id: user.id,
             email: user.email,

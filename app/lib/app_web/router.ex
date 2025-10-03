@@ -51,6 +51,8 @@ defmodule AppWeb.Router do
     put "/games/:id", Superuser.GameController, :update
     delete "/games/:id", Superuser.GameController, :delete
     post "/games/:id/resolve", Superuser.GameController, :resolve
+    get "/games/:id/profit", Superuser.GameController, :profit
+
 
     # User management
     post "/users/:id/role", Superuser.UserController, :set_role

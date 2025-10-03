@@ -3,10 +3,7 @@ defmodule AppWeb.AuthController do
   alias App.AccountsContext
   alias App.Sports.User
 
-  def new(conn, _params) do
-    render(conn, :new)
-  end
-
+  # Handle registration with nested "user" parameters
   def register(conn, %{"user" => user_params}) do
     case AccountsContext.register_user(user_params) do
       {:ok, user} ->

@@ -23,6 +23,7 @@ defmodule AppWeb.Superuser.GameController do
     end
   end
 
+  # Handle missing "game" params
   def create(conn, _params) do
     conn
     |> put_status(:unprocessable_entity)
@@ -108,6 +109,11 @@ defmodule AppWeb.Superuser.GameController do
             |> put_status(:unprocessable_entity)
             |> json(%{status: "error", message: "Invalid data", errors: errors})
         end
+    end
+
+  def profit(conn, %{"id" => game_id}) do
+      profit = App.Bets.compute_profit_for_game(game_id)
+      json(conn, %{status: "success", game_id: game_id, profit: profit})
     end
   end
 end
